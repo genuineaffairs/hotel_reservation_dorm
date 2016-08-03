@@ -4,9 +4,9 @@ class HotelReservation(models.Model):
 	_inherit = 'hotel.reservation'
 	
 	def test_func(res):
-	print "TEST RESULT"
-	print ""
-	print res
+		print "TEST RESULT"
+		print ""
+		print res
 
 	@api.multi
 	def confirmed_reservation(self):
