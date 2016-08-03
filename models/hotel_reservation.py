@@ -58,7 +58,7 @@ class HotelReservation(models.Model):
 							'state': 'assigned',
 							'reservation_id': reservation.id,
 							}
-						room_id.write({'isroom': False, 'status': 'occupied'})
+						#room_id.write({'isroom': False, 'status': 'occupied'})
 						reservation_line_obj.create(vals)
 		return True
 		
