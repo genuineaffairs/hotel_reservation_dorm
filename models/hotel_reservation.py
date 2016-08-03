@@ -2,6 +2,11 @@ from openerp import models, fields, api
 
 class HotelReservation(models.Model):
 	_inherit = 'hotel.reservation'
+	
+	def test_func(res):
+	print "TEST RESULT"
+	print ""
+	print res
 
 	@api.multi
 	def confirmed_reservation(self):
@@ -55,7 +60,3 @@ class HotelReservation(models.Model):
 						reservation_line_obj.create(vals)
 		return True
 		
-	def test_func(res):
-		print "TEST RESULT"
-		print ""
-		print res
