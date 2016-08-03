@@ -55,7 +55,7 @@ class HotelReservation(models.Model):
 							'room_id': room_id.id,
 							'check_in': reservation.checkin,
 							'check_out': reservation.checkout,
-							'state': 'assigned',
+							#'state': 'assigned',
 							'reservation_id': reservation.id,
 							}
 						#room_id.write({'isroom': False, 'status': 'occupied'})
