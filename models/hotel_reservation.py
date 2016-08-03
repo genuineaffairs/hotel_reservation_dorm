@@ -33,7 +33,7 @@ class HotelReservation(models.Model):
                              (reservation.checkin, reservation.checkout,
                               str(reservation.id), str(reservation.id)))
             res = self._cr.fetchone()
-			print test_func(res)
+			test_func(res)
             roomcount = res and res[0] or 0.0
             if roomcount:
                 raise except_orm(_('Warning'), _('You tried to confirm \
