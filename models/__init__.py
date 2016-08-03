@@ -1,1 +1,1 @@
-from . import hotel_reservation
+from . import hotel, hotel_reservation
