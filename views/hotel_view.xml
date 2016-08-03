@@ -5,7 +5,7 @@
 	<record model="ir.ui.view" id="view_hotel_room_form_dorm">
 	<field name="name">hotel.room.form</field>
 	<field name="model">hotel.room</field>
-	<field name="inherit_id" ref="hotel_room.view_hotel_room_form_dorm" />
+	<field name="inherit_id" ref="hotel_room.view_hotel_room_form" />
 	<field name="arch" type="xml">
 		<xpath expr="//field[@name='capacity']" position="after">
 			<field name="dormitory" />
