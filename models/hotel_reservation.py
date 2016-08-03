@@ -39,7 +39,6 @@ class HotelReservation(models.Model):
 				str(reservation.id), str(reservation.id)))
 			res = self._cr.fetchone()
 			print "PRINT RES:"
-			print ""
 			print res
 			roomcount = res and res[0] or 0.0
 			if roomcount:
@@ -57,10 +56,10 @@ class HotelReservation(models.Model):
 							'room_id': room_id.id,
 							'check_in': reservation.checkin,
 							'check_out': reservation.checkout,
-							'state': 'assigned',
+							'state': 'unassigned',
 							'reservation_id': reservation.id,
 							}
-						room_id.write({'isroom': False, 'status': 'occupied'})
+						#room_id.write({'isroom': False, 'status': 'occupied'})
 						reservation_line_obj.create(vals)
 		return True
 		
