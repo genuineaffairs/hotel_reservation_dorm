@@ -49,16 +49,18 @@ class HotelReservation(models.Model):
 			else:
 				self.write({'state': 'confirm'})
 				for line_id in reservation.reservation_line:
+					print "LINE_ID"
+					print line_id
 					line_id = line_id.reserve
 					for room_id in line_id:
 						vals = {
 							'room_id': room_id.id,
 							'check_in': reservation.checkin,
 							'check_out': reservation.checkout,
-							#'state': 'assigned',
+							'state': 'assigned',
 							'reservation_id': reservation.id,
 							}
-						room_id.write({'isroom': True, 'status': 'available'})
+						room_id.write({'isroom': False, 'status': 'occupied'})
 						reservation_line_obj.create(vals)
 		return True
 		
