@@ -53,7 +53,7 @@
 	<menuitem name="Beds"
 			  id="menu_open_hotel_room_bed" 
 			  action="action_hotel_room_bed"
-			  sequence="99"
-			  parent="hotel.hotel_configuration_menu"/>
+			  sequence="11"
+			  parent="hotel.menu_hotel_room"/>
 </data>
 </openerp>
