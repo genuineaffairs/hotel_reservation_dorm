@@ -54,6 +54,9 @@ class HotelReservation(models.Model):
 					for room_id in line_id:
 						print "ROOM ID"
 						print room_id.bed_ids
+						beds = room_id.bed_ids
+						for bed in beds:
+							print bed.name
 						vals = {
 							'room_id': room_id.id,
 							'check_in': reservation.checkin,
