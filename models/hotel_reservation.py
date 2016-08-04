@@ -53,7 +53,7 @@ class HotelReservation(models.Model):
 						beds = room_id.bed_ids
 						for bed in beds:
 							print bed.name
-						if(!beds):
+						if not beds:
 							print "THIS ROOM DOESNT HAVE BEDS"
 						vals = {
 							'room_id': room_id.id,
