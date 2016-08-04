@@ -51,8 +51,8 @@ class HotelReservation(models.Model):
 						#EXTRA
 						print "ROOM ID"
 						print room_id
+						beds = room_id.bed_ids
 						if beds:
-							beds = room_id.bed_ids
 							for bed in beds:
 								print bed.name
 							vals = {
