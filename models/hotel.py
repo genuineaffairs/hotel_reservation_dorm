@@ -13,3 +13,7 @@ class HotelBed(models.Model):
 	name = fields.Char('Bed name') 
 	room_id = fields.Many2one('hotel.room','bed_ids')
 	
+	product_id = fields.Many2one('product.product', 'Product_id',
+			required=True, delegate=True,
+			ondelete='cascade')
+	
