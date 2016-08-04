@@ -32,5 +32,5 @@ class HotelRoomReservationLine(models.Model):
 class HotelReservationLine(models.Model):
 	_inherit = 'hotel_reservation.line'
 	
-	bed_reserve = fields.Many2many('hotel.room.bed','hotel_reservation_line_room_rel',
+	bed_reserve = fields.Many2many('hotel.room.bed','hotel_reservation_line_bed_rel',
 						'hotel_reservation_line_id', 'bed_id')
