@@ -53,16 +53,24 @@ class HotelReservation(models.Model):
 						beds = room_id.bed_ids
 						for bed in beds:
 							print bed.name
-						if not beds:
-							print "THIS ROOM DOESNT HAVE BEDS"
-						vals = {
-							'room_id': room_id.id,
-							'check_in': reservation.checkin,
-							'check_out': reservation.checkout,
-							'state': 'assigned',
-							'reservation_id': reservation.id,
-							}
-						room_id.write({'isroom': False, 'status': 'occupied'})
-						reservation_line_obj.create(vals)
+						if beds:
+							vals = {
+								'bed_id': bed[0].id
+								'check_in': reservation.checkin,
+								'check_out': reservation.checkout,
+								'state': 'assigned',
+								'reservation_id': reservation.id,								
+								}
+							reservation_line_obj.create(vals)
+						else:
+							vals = {
+								'room_id': room_id.id,
+								'check_in': reservation.checkin,
+								'check_out': reservation.checkout,
+								'state': 'assigned',
+								'reservation_id': reservation.id,
+								}
+							room_id.write({'isroom': False, 'status': 'occupied'})
+							reservation_line_obj.create(vals)
 		return True
 		
