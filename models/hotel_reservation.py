@@ -48,12 +48,13 @@ class HotelReservation(models.Model):
 				for line_id in reservation.reservation_line:
 					line_id = line_id.reserve
 					for room_id in line_id:
+						#EXTRA
 						print "ROOM ID"
-						print room_id.bed_ids
-						beds = room_id.bed_ids
-						for bed in beds:
-							print bed.name
+						print room_id
 						if beds:
+							beds = room_id.bed_ids
+							for bed in beds:
+								print bed.name
 							vals = {
 								'bed_id': bed[0].id,
 								'check_in': reservation.checkin,
@@ -63,6 +64,7 @@ class HotelReservation(models.Model):
 								}
 							reservation_line_obj.create(vals)
 						else:
+						# END OF EXTRA
 							vals = {
 								'room_id': room_id.id,
 								'check_in': reservation.checkin,
