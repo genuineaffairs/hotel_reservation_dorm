@@ -9,12 +9,10 @@
 	<field name="arch" type="xml">
 		<xpath expr="//field[@name='dummy']" position="before">
 		</xpath>
-		<xpath expr="//page[@string='Reservation Line']" position="after">
-			<page string="Bed Reservation">
-				<tree string="Reservation Line">
+		<xpath expr="//tree[@string='Reservation Line']" position="replace">
+			<tree string="Reservation Line">
 					<field name="bed_reserve" string="Beds" />
-				</tree>
-			</page>
+			</tree>
 		</xpath>
 	</field>
 	</record>
