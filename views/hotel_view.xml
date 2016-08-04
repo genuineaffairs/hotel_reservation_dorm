@@ -42,7 +42,7 @@
 	
 	
 	<!-- Action for hotel bed  -->
-	<record model="ir.actions.act_window" id="action_hotel_room_bed_form">
+	<record model="ir.actions.act_window" id="action_hotel_room_bed">
 		<field name="name">Hotel Bed</field>
 		<field name="res_model">hotel.room.bed</field>
 		<field name="view_type">form</field>
@@ -51,8 +51,8 @@
 	</record>
 
 	<menuitem name="Beds"
-			  id="menu_open_hotel_room_bed_form" 
-			  action="action_hotel_room_bed_form"
+			  id="menu_open_hotel_room_bed" 
+			  action="action_hotel_room_bed"
 			  sequence="11"
 			  parent="hotel.menu_hotel_room"/>
 </data>
