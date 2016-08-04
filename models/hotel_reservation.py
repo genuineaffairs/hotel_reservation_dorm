@@ -38,8 +38,6 @@ class HotelReservation(models.Model):
 				(reservation.checkin, reservation.checkout,
 				str(reservation.id), str(reservation.id)))
 			res = self._cr.fetchone()
-			print "PRINT RES:"
-			print res
 			roomcount = res and res[0] or 0.0
 			if roomcount:
 				raise except_orm(_('Warning'), _('You tried to confirm \
@@ -48,8 +46,6 @@ class HotelReservation(models.Model):
 			else:
 				self.write({'state': 'confirm'})
 				for line_id in reservation.reservation_line:
-					print "LINE_ID"
-					print line_id
 					line_id = line_id.reserve
 					for room_id in line_id:
 						print "ROOM ID"
@@ -57,6 +53,8 @@ class HotelReservation(models.Model):
 						beds = room_id.bed_ids
 						for bed in beds:
 							print bed.name
+						if(!beds):
+							print "THIS ROOM DOESNT HAVE BEDS"
 						vals = {
 							'room_id': room_id.id,
 							'check_in': reservation.checkin,
