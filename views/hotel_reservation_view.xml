@@ -9,6 +9,9 @@
 	<field name="arch" type="xml">
 		<xpath expr="//field[@name='dummy']" position="before">
 		</xpath>
+		<xpath expr="//field[@string='Room Number']" position="replace">
+			<field name="bed_reserve" colspan="4" string="Bed Number" nolabel="1" />
+		</xpath>
 		<xpath expr="//tree[@string='Reservation Line']" position="replace">
 			<tree string="Reservation Line">
 					<field name="bed_reserve" string="Beds" />
