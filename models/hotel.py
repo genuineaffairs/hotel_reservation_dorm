@@ -28,3 +28,9 @@ class HotelRoomReservationLine(models.Model):
 	_inherit = 'hotel.room.reservation.line'
 	
 	bed_id = fields.Many2one(comodel_name='hotel.room.bed', string='Bed id')
+
+class HotelReservationLine(models.Model):
+	_inherit = 'hotel_reservation.line'
+	
+	bed_reserve = fields.Many2many('hotel.room.bed','hotel_reservation_line_room_rel',
+						'hotel_reservation_line_id', 'bed_id')
