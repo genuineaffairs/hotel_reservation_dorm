@@ -20,10 +20,7 @@
 	<field name="arch" type="xml">
 		<tree string="Hotel Bed" >
 			<field name="name" />
-			<field name="categ_id" select="1"/>
-			<field name="list_price" string="Room rate"/>
-			<field name="status"/>
-			<field name="capacity"/>
+			<field name="room_id" />
 		</tree>
 	</field>
 	</record>
