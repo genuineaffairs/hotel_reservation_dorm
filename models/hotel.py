@@ -19,7 +19,7 @@ class HotelBed(models.Model):
 							'Status', default='available')
 	capacity = fields.Integer('Capacity', default=1)
 	bed_line_ids = fields.One2many('folio.room.line', 'room_id', string='Bed Reservation Line')
-	bed_reservation_line_ids = fields.One2many('hotel.room.reservation.line', 'room_id', string='Bed Reserv Line')
+	bed_reservation_line_ids = fields.One2many('hotel.room.reservation.line', 'bed_id', string='Bed Reserv Line')
 	product_id = fields.Many2one('product.product', 'Product_id',
 		required=True, delegate=True,
 		ondelete='cascade')
