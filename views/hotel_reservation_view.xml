@@ -11,7 +11,7 @@
 		</xpath>
 		<xpath expr="//page[@string='Reservation Line']" position="after">
 			<page string="Bed Reservation">
-				<tree>
+				<tree string="Reservation Line">
 					<field name="bed_reserve" string="Beds" />
 				</tree>
 			</page>
