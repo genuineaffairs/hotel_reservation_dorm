@@ -12,7 +12,7 @@ class HotelBed(models.Model):
 	_name = 'hotel.room.bed'
 	
 	name = fields.Char('Bed name') 
-	room_id = fields.Many2one('hotel.room','bed_ids')
+	room_id = fields.Many2one('hotel.room','bed_ids', string='In Room')
 	
 	status = fields.Selection([('available', 'Available'),
 							('occupied', 'Occupied')],
