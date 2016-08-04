@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 <openerp>
 <data>
-
+	<!-- Edit Hotel Room form view -->
 	<record model="ir.ui.view" id="view_hotel_room_form_dorm">
 	<field name="name">hotel.room.form</field>
 	<field name="model">hotel.room</field>
@@ -13,5 +13,48 @@
 	</field>
 	</record>
 			
+	<!-- Hotel Bed tree view -->
+	<record model="ir.ui.view" id="view_hotel_room_bed_tree" >
+	<field name="name">hotel.room.bed.tree</field>
+	<field name="model">hotel.room.bed</field>
+	<field name="arch" type="xml">
+		<tree string="Hotel Bed" >
+			<field name="name" />
+			<field name="categ_id" select="1"/>
+			<field name="list_price" string="Room rate"/>
+			<field name="status"/>
+			<field name="capacity"/>
+		</tree>
+	</field>
+	</record>
+	
+	<!-- Hotel Bed form view -->
+	<record model="ir.ui.view" id="view_hotel_room_bed_form" >
+	<field name="name">hotel.room.bed.form</field>
+	<field name="model">hotel.room.bed</field>
+	<field name="arch" type="xml">
+		<form string="Hotel Bed" >
+			<field name="name" />
+			<field name="room_id" />
+		</form>
+	</field>
+	</record>
+	
+	
+	<!-- Action for hotel bed  -->
+	<record model="ir.actions.act_window" id="action_hotel_room_bed_form">
+		<field name="name">Hotel Bed</field>
+		<field name="res_model">hotel.room.bed</field>
+		<field name="view_type">form</field>
+		<field name="context">{'default_isroom':1,'default_rental':1,'default_available_in_pos':0}</field>
+		<field name="view_id" ref="view_hotel_room_bed_tree"/>
+		<field name="view_mode">tree,form</field>
+	</record>
+
+	<menuitem name="Beds"
+			  id="menu_open_hotel_room_bed_form" 
+			  action="action_hotel_room_bed_form"
+			  sequence="5"
+			  parent="hotel.menu_hotel_room"/>
 </data>
 </openerp>
