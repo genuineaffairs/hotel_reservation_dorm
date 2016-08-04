@@ -10,6 +10,11 @@
 		<xpath expr="//field[@name='capacity']" position="after">
 			<field name="dormitory" />
 		</xpath>
+		<xpath expr="//separator[@string='Supplier Taxes']" position="before">
+			<separator string="Beds" />
+			<field name="bed_ids" nolabel='1' help="List of beds in room." />
+			<newline/>
+		</xpath>
 	</field>
 	</record>
 			
