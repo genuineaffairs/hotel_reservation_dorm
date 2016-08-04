@@ -55,7 +55,7 @@ class HotelReservation(models.Model):
 							print bed.name
 						if beds:
 							vals = {
-								'bed_id': bed[0].id
+								'bed_id': bed[0].id,
 								'check_in': reservation.checkin,
 								'check_out': reservation.checkout,
 								'state': 'assigned',
