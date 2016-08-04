@@ -12,5 +12,5 @@ class HotelBed(models.Model):
 	_inherit = 'hotel.room'
 	
 	name = fields.Char('Bed name') 
-	room_id = fields.Many2one('hotel.room')
+	room_id = fields.Many2one('hotel.room', 'Parent room')
 	
