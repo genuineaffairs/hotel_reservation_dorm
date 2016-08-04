@@ -41,7 +41,7 @@
 			<field name="capacity" />
 			<field name="bed_line_ids" />
 			<field name="bed_reservation_line_ids" />
-			<field name="product_id" />
+			<field name="categ_id" />
 		</form>
 	</field>
 	</record>
