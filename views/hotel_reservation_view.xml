@@ -10,6 +10,7 @@
 		<xpath expr="//field[@name='dummy']" position="before">
 		</xpath>
 		<xpath expr="//tree[@string='Reservation Line']" position="inside">
+			<newline />
 			<field name="bed_reserve" string="Beds" />
 		</xpath>
 	</field>
