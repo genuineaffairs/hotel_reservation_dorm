@@ -24,3 +24,7 @@ class HotelBed(models.Model):
 		required=True, delegate=True,
 		ondelete='cascade')
 		
+class HotelRoomReservationLine(models.Model):
+	_inherit = 'hotel.room.reservation.line'
+	
+	bed_id = fields.Many2one(comodel_name='hotel.room.bed', string='Bed id')
