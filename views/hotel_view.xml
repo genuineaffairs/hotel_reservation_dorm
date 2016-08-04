@@ -38,6 +38,10 @@
 		<form string="Hotel Bed" >
 			<field name="name" />
 			<field name="room_id" />
+			<field name="capacity" />
+			<field name="bed_line_ids" />
+			<field name="bed_reservation_line_ids" />
+			<field name="product_id" />
 		</form>
 	</field>
 	</record>
