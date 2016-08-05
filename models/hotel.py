@@ -14,7 +14,7 @@ class HotelRoom(models.Model):
 			print "CREATING BEDS FOR DORM"
 			for i in range(vals['capacity']):
 				bed_name = "Bed #" + str(i+1)
-				bed_vals = {'room_id': self.id, 'name': bed_name, 'capacity': 1, 'categ_id': vals['categ_id'],}
+				bed_vals = {'room_id': self.id, 'name': bed_name, 'capacity': 1,}
 				new_bed = self.env['hotel.room.bed'].create(bed_vals)
 				print new_bed
 				vals.update({'bed_ids': new_bed.id})
