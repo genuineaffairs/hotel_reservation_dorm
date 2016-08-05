@@ -19,7 +19,8 @@ class HotelReservation(models.Model):
 			# Check if the reservation is for a room marked as dormitory
 			if room_id.dormitory:
 				for bed in room_id.bed_ids:
-					if ( bed.check_availability(self.checkin, self.checkout) ):
+					print bed.check_availability(self.checkin, self.checkout)
+					if bed.check_availability(self.checkin, self.checkout):
 						next_free_bed = bed
 						print "next free bed: "
 						print next_free_bed
