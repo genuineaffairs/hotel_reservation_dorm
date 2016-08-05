@@ -10,12 +10,12 @@ class HotelRoom(models.Model):
 	@api.model
 	def create(self,vals):
 		# IF THE ROOM IS A DORM, CREATE BEDS
-		if dormitory:
+		if self.dormitory:
 			print "CREATING BEDS FOR DORM"
-			for i in capacity:
+			for i in self.capacity:
 				print i
 				bed_vals = {'room_id': self.id}
-				beds_ids = self.env['hotel.room.bed'].create(bed_vals)
+				self.beds_ids = self.env['hotel.room.bed'].create(bed_vals)
 		uom_obj = self.env['product.uom']
 		vals.update({'type':'service'})
 		oum_rec = uom_obj.search([('name','ilike','Hour(s)')],limit=1)
