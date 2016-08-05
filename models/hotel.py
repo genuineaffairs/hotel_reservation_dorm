@@ -12,13 +12,13 @@ class HotelRoom(models.Model):
 		# IF THE ROOM IS A DORM, CREATE BEDS
 		if vals['dormitory']:
 			print "CREATING BEDS FOR DORM"
+			new_beds = []
 			for i in range(vals['capacity']):
 				bed_name = "Bed #" + str(i+1)
 				bed_vals = {'room_id': self.id, 'name': bed_name, 'capacity': 1,}
-				new_bed = self.env['hotel.room.bed'].create(bed_vals)
-				print new_bed.name
-				print new_bed.id
-				vals.update({'bed_ids': new_bed.id})
+				new_beds.update((0,0,bed_vals))
+				print new_beds
+			vals.update({'bed_ids': new_beds})
 		# END OVERRIDE
 		uom_obj = self.env['product.uom']
 		vals.update({'type':'service'})
