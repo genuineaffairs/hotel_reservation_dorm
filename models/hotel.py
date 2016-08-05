@@ -13,8 +13,8 @@ class HotelRoom(models.Model):
 		if vals['dormitory']:
 			print "CREATING BEDS FOR DORM"
 			for i in range(vals['capacity']):
-				print i
-				bed_vals = {'room_id': self.id}
+				bed_name = "Bed #" + str(i+1)
+				bed_vals = {'room_id': self.id, 'name': bed_name}
 				new_bed = self.env['hotel.room.bed'].create(bed_vals)
 				vals.update({'bed_ids': new_bed})
 		uom_obj = self.env['product.uom']
