@@ -50,6 +50,7 @@ class HotelReservation(models.Model):
 							beds = room_id.bed_ids
 							for bed in beds:
 								print bed.name
+								bed.check_bed_availability(self.checkin, self.checkout)
 							vals = {
 								'bed_id': beds[0].id,
 								'check_in': reservation.checkin,

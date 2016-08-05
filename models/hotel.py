@@ -40,6 +40,12 @@ class HotelBed(models.Model):
 	capacity = fields.Integer('Capacity', default=1)
 	bed_line_ids = fields.One2many('folio.room.line', 'room_id', string='Bed Reservation Line')
 	bed_reservation_line_ids = fields.One2many('hotel.room.reservation.line', 'bed_id', string='Bed Reserv Line')
+	
+	@api.one
+	def check_bed_availability(self, check_in, check_out):
+		self.env.cr.execute("SELECT * hotel_room_reservation_line WHERE (check_in,check_out) OVERLAPS ( timestamp %s, timestamp %s )", (check_in,check_out))
+		query_result = self.env.cr.fetchall()
+		print query_result
 		
 class HotelRoomReservationLine(models.Model):
 	_inherit = 'hotel.room.reservation.line'
