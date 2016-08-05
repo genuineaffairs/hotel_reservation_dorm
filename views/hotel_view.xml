@@ -25,7 +25,7 @@
 					<field name="hotel_room_bed.check_in"/>
 					<field name="hotel_room_bed.check_out"/>
 					<field name="hotel_room_bed.reservation_id"/>
-					<field name="hotel_room_bed.status"/>
+					<field name="status"/>
 				</group>
 			</form>
 			<tree>
