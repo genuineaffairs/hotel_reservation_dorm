@@ -20,8 +20,7 @@ class HotelReservation(models.Model):
 			if room_id.dormitory:
 				for bed in room_id.bed_ids:
 					ret = bed.check_availability(self.checkin, self.checkout)
-					print ret[0]
-					if bed.check_availability(self.checkin, self.checkout):
+					if ret[0]:
 						next_free_bed = bed
 						print "next free bed: "
 						print next_free_bed
