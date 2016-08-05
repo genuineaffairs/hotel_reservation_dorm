@@ -18,7 +18,7 @@ class HotelRoom(models.Model):
 				self.beds_ids = self.env['hotel.room.bed'].create(bed_vals)
 		uom_obj = self.env['product.uom']
 		vals.update({'type':'service'})
-		oum_rec = uom_obj.search([('name','ilike','Hour(s)')],limit=1)
+		uom_rec = uom_obj.search([('name','ilike','Hour(s)')],limit=1)
 		if uom_rec:
 			vals.update({'uom_id':uom_rec.id,'uom_po_id':uom_rec.id})
 		return super(HotelRoom,self).create(vals)
