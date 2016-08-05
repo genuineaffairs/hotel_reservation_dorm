@@ -49,7 +49,6 @@ class HotelBed(models.Model):
 		self.env.cr.execute("SELECT * FROM hotel_room_reservation_line WHERE (check_in,check_out) OVERLAPS ( timestamp %s, timestamp %s ) AND bed_id=%s", (check_in, check_out, self.id))
 		query_result = self.env.cr.fetchall()
 		if query_result:
-			print "Bed is not available"
 			return False
 		else:
 			return True
