@@ -20,9 +20,6 @@
 						<separator colspan="4" string="Bed Reservation Line"/>
 					</page>
 		</xpath>
-		<xpath expr="//page[@string='Room Reservation']" position="attributes">
-			<attribute name="attrs">{'invisible': [('dormitory','=',False)]}</attribute>			
-		</xpath>
 	</field>
 	</record>
 			
