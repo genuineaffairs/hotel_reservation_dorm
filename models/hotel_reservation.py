@@ -14,7 +14,7 @@ class HotelReservation(models.Model):
 		reservation_line_obj = self.env['hotel.room.reservation.line']
 		for reservation in self:
 			roomcount = 0
-			if reservation.reservation_line.reserve.room_id.dormitory:
+			if reservation.reservation_line.reserve.dormitory:
 				print "This is a dorm-room."
 			else:
 				self._cr.execute("select count(*) from hotel_reservation as hr "
