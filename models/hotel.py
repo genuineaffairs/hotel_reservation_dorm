@@ -7,6 +7,22 @@ class HotelRoom(models.Model):
 	bed_ids = fields.One2many('hotel.room.bed','room_id')
 	nr_beds = fields.Integer('Nr of beds in room', default=1)
 	
+	@api.models
+	def create(self,vals):
+		# IF THE ROOM IS A DORM, CREATE BEDS
+		if dormitory:
+			print "CREATING BEDS FOR DORM"
+			for i in capacity:
+				print i
+				bed_vals = {'room_id': self.id}
+				beds_ids = self.env['hotel.room.bed'].create(bed_vals)
+		uom_obj = self.env['product.uom']
+		vals.update({'type':'service'})
+		oum_rec = uom_obj.search([('name','ilike','Hour(s)')],limit=1)
+		if uom_rec:
+			vals.update({'uom_id':uom_rec.id,'uom_po_id':uom_rec.id})
+		return super(HotelRoom,self).create(vals)
+	
 
 class HotelBed(models.Model):
 	_name = 'hotel.room.bed'

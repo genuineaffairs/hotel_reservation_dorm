@@ -2,11 +2,6 @@ from openerp import models, fields, api
 
 class HotelReservation(models.Model):
 	_inherit = 'hotel.reservation'
-	
-	def test_func(res):
-		print "TEST RESULT"
-		print ""
-		print res
 
 	@api.multi
 	def confirmed_reservation(self):
@@ -48,15 +43,15 @@ class HotelReservation(models.Model):
 				for line_id in reservation.reservation_line:
 					line_id = line_id.reserve
 					for room_id in line_id:
-						#EXTRA
+						#EXTRA FOR DORMITORYS
 						print "ROOM ID"
 						print room_id
-						beds = room_id.bed_ids
-						if beds:
+						if room_id.dormitory:
+							beds = room_id.bed_ids
 							for bed in beds:
 								print bed.name
 							vals = {
-								'bed_id': bed[0].id,
+								'bed_id': beds[0].id,
 								'check_in': reservation.checkin,
 								'check_out': reservation.checkout,
 								'state': 'assigned',
