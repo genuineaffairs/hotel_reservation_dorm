@@ -14,7 +14,7 @@ class HotelRoom(models.Model):
 			print "CREATING BEDS FOR DORM"
 			new_beds = []
 			for i in range(vals['capacity']):
-				bed_name = vals['name'] + ": Bed #" + str(i+1)
+				bed_name = "Bed #" + str(i+1)
 				bed_vals = {'name': bed_name, 'capacity': 1,}
 				new_beds.append((0,0,bed_vals))
 				print new_beds

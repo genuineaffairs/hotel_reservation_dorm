@@ -25,7 +25,7 @@
 	<field name="arch" type="xml">
 		<tree string="Hotel Bed" >
 			<field name="name" />
-			<field name="room_id" />
+			<field name="room_id" string="Room" />
 		</tree>
 	</field>
 	</record>
@@ -37,12 +37,8 @@
 	<field name="arch" type="xml">
 		<form string="Hotel Bed" >
 			<field name="name" />
-			<field name="room_id" />
 			<field name="capacity" />
-			<field name="bed_line_ids" />
 			<field name="bed_reservation_line_ids" />
-<!--			<field name="categ_id" />
-			<field name="product_id" />-->
 		</form>
 	<notebook>
 		<page string="Bed Reservation">
