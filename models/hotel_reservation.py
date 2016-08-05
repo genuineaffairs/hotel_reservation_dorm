@@ -1,5 +1,4 @@
-from openerp import models, fields, api
-from openerp.exceptions import except_orm
+from openerp import models, fields, api, exceptions
 
 class HotelReservation(models.Model):
 	_inherit = 'hotel.reservation'
@@ -51,9 +50,9 @@ class HotelReservation(models.Model):
 				res = self._cr.fetchone()
 				roomcount = res and res[0] or 0.0
 			if roomcount:
-				raise except_orm(_('Warning'), _('You tried to confirm \
+				raise	exceptions.Warning('You tried to confirm \
 				reservation with room those already reserved in this \
-				reservation period'))
+				reservation period')
 			else:
 				self.write({'state': 'confirm'})
 				#EXTRA FOR DORMITORYS
