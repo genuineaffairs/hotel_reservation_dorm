@@ -16,9 +16,12 @@
 			<newline/>
 		</xpath>
 		<xpath expr="//page[@string='Information']" position="after">
-					<page string="Bed Reservation" attrs="{'invisible': [('dormitory','=',False)]}">
+					<page string="Bed Reservations" attrs="{'invisible': [('dormitory','=',False)]}">
 						<separator colspan="4" string="Bed Reservation Line"/>
 					</page>
+		</xpath>
+		<xpath expr="//page[@string='Room Reservation']" position="attributes">
+			<attribute name="attrs">{'invisible': [('dormitory','=',False)]}</attrbiutes>			
 		</xpath>
 	</field>
 	</record>
