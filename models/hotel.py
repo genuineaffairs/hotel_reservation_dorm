@@ -16,7 +16,8 @@ class HotelRoom(models.Model):
 				bed_name = "Bed #" + str(i+1)
 				bed_vals = {'room_id': self.id, 'name': bed_name, 'capacity': 1,}
 				new_bed = self.env['hotel.room.bed'].create(bed_vals)
-				print new_bed
+				print new_bed.name
+				print new_bed.id
 				vals.update({'bed_ids': new_bed.id})
 		# END OVERRIDE
 		uom_obj = self.env['product.uom']
