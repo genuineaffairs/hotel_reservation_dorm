@@ -16,7 +16,7 @@
 			<newline/>
 		</xpath>
 		<xpath expr="//page[@string='Information']" position="after">
-					<page string="Bed Reservation">
+					<page string="Bed Reservation" attrs="{'invisible': [('dormitory','=',False)]}">
 						<separator colspan="4" string="Bed Reservation Line"/>
 					</page>
 		</xpath>
