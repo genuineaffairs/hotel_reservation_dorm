@@ -41,14 +41,16 @@ class HotelBed(models.Model):
 	bed_line_ids = fields.One2many('folio.room.line', 'room_id', string='Bed Reservation Line')
 	bed_reservation_line_ids = fields.One2many('hotel.room.reservation.line', 'bed_id', string='Bed Reserv Line')
 	
+	# Checks availability for a bed for a certain time-period
+	# Returns False if there are reservations overlaping selected time-period
+	# Returns True if there are no other reservations within time-period
 	@api.one
-	def check_bed_availability(self, check_in, check_out):
+	def check_availability(self, check_in, check_out):
 		self.env.cr.execute("SELECT * FROM hotel_room_reservation_line WHERE (check_in,check_out) OVERLAPS ( timestamp %s, timestamp %s ) AND bed_id=%s", (check_in, check_out, self.id))
 		query_result = self.env.cr.fetchall()
 		if query_result:
 			return False
 		else:
-			print self.name + " is available!"
 			return True
 		
 class HotelRoomReservationLine(models.Model):
