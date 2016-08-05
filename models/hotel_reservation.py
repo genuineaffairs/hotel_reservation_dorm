@@ -1,4 +1,5 @@
 from openerp import models, fields, api
+from openerp.exceptions import except_orm
 
 class HotelReservation(models.Model):
 	_inherit = 'hotel.reservation'
