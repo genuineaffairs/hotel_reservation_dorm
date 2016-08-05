@@ -12,7 +12,7 @@ class HotelRoom(models.Model):
 		# IF THE ROOM IS A DORM, CREATE BEDS
 		if vals['dormitory']:
 			print "CREATING BEDS FOR DORM"
-			for i in vals['capacity']:
+			for i in range(vals['capacity']):
 				print i
 				bed_vals = {'room_id': self.id}
 				new_bed = self.env['hotel.room.bed'].create(bed_vals)
