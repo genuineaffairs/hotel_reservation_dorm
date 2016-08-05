@@ -16,7 +16,8 @@ class HotelRoom(models.Model):
 			for i in range(vals['capacity']):
 				bed_name = "Bed #" + str(i+1)
 				bed_vals = {'room_id': self.id, 'name': bed_name, 'capacity': 1,}
-				new_beds.update((0,0,bed_vals))
+				new_bed = (0,0,bed_vals))
+				new_beds = new_beds + new_bed
 				print new_beds
 			vals.update({'bed_ids': new_beds})
 		# END OVERRIDE
