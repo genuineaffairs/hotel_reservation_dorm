@@ -20,6 +20,7 @@
 						<separator colspan="4" string="Bed Reservation Line"/>
 						<field name="hotel_room_bed.bed_reservation_line_ids" colspan="4" nolabel="1" string="Bed Reservation Line">
 						</field>
+					</page>
 		</xpath>
 	</field>
 	</record>
