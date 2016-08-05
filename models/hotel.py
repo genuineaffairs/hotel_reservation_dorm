@@ -43,7 +43,7 @@ class HotelBed(models.Model):
 	
 	@api.one
 	def check_bed_availability(self, check_in, check_out):
-		self.env.cr.execute("SELECT * FROM hotel_room_reservation_line WHERE (check_in,check_out) OVERLAPS ( timestamp %s, timestamp %s )", (check_in,check_out))
+		self.env.cr.execute("SELECT * FROM hotel_room_reservation_line WHERE (check_in,check_out) OVERLAPS ( timestamp %s, timestamp %s ) AND bed_id=%s", (check_in, check_out, self.id))
 		query_result = self.env.cr.fetchall()
 		print query_result
 		
