@@ -6,8 +6,8 @@ class HotelRoom(models.Model):
 	dormitory = fields.Boolean('Dormitory')
 	bed_ids = fields.One2many('hotel.room.bed','room_id')
 	nr_beds = fields.Integer('Nr of beds in room', default=1)
-	
-	@api.models
+
+	@api.model
 	def create(self,vals):
 		# IF THE ROOM IS A DORM, CREATE BEDS
 		if dormitory:
