@@ -19,11 +19,10 @@ class HotelReservation(models.Model):
 			# Check if the reservation is for a room marked as dormitory
 			if room_id.dormitory:
 				for bed in room_id.bed_ids:
+					# Check availability for each bed and set it to next_free_bed if available
 					ret = bed.check_availability(self.checkin, self.checkout)
 					if ret[0]:
 						next_free_bed = bed
-						print "next free bed: "
-						print next_free_bed
 						break
 				if not next_free_bed:
 					roomcount = 1
@@ -50,7 +49,7 @@ class HotelReservation(models.Model):
 				res = self._cr.fetchone()
 				roomcount = res and res[0] or 0.0
 			if roomcount:
-				raise	exceptions.Warning('You tried to confirm \
+				raise exceptions.Warning('You tried to confirm \
 				reservation with room those already reserved in this \
 				reservation period')
 			else:
