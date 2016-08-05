@@ -21,6 +21,8 @@ class HotelReservation(models.Model):
 				for bed in room_id.bed_ids:
 					if ( bed.check_availability(self.checkin, self.checkout) ):
 						next_free_bed = bed
+						print "next free bed: "
+						print next_free_bed
 						break
 				if not next_free_bed:
 					roomcount = 1
