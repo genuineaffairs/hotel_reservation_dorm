@@ -11,8 +11,8 @@
 			<field name="dormitory" />
 		</xpath>
 		<xpath expr="//separator[@string='Supplier Taxes']" position="before">
-			<separator string="Beds" />
-			<field name="bed_ids" nolabel='1' help="List of beds in room." />
+			<separator string="Beds" attrs="{'invisible': [('dormitory','=',False)]}" />
+			<field name="bed_ids" nolabel='1' help="List of beds in room." attrs="{'invisible': [('dormitory','=',False)]}" />
 			<newline/>
 		</xpath>
 	</field>
@@ -36,8 +36,8 @@
 	<field name="model">hotel.room.bed</field>
 	<field name="arch" type="xml">
 		<form string="Hotel Bed" >
-			<field name="name" string="Name" />
-			<field name="room_id" string="In Room" />
+			<field name="name" />
+			<field name="room_id" />
 		</form>
 	<notebook>
 		<page string="Bed Reservation">
