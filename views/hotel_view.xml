@@ -41,8 +41,8 @@
 			<field name="capacity" />
 			<field name="bed_line_ids" />
 			<field name="bed_reservation_line_ids" />
-			<field name="categ_id" />
-			<field name="product_id" />
+<!--			<field name="categ_id" />
+			<field name="product_id" />-->
 		</form>
 	<notebook>
 		<page string="Bed Reservation">
