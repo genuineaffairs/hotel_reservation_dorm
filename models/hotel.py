@@ -14,8 +14,8 @@ class HotelRoom(models.Model):
 			print "CREATING BEDS FOR DORM"
 			for i in range(vals['capacity']):
 				bed_name = "Bed #" + str(i+1)
-				print vals['categ_id']
-				bed_vals = {'room_id': self.id, 'name': bed_name}
+				print bed_name
+				bed_vals = {'room_id': self.id, 'name': bed_name, 'categ_id': vals['categ_id']}
 				new_bed = self.env['hotel.room.bed'].create(bed_vals)
 				vals.update({'bed_ids': new_bed})
 		# END OVERRIDE
