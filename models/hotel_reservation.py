@@ -14,8 +14,16 @@ class HotelReservation(models.Model):
 		reservation_line_obj = self.env['hotel.room.reservation.line']
 		for reservation in self:
 			roomcount = 0
-			if reservation.reservation_line.reserve.dormitory:
-				print "This is a dorm-room."
+			room_id = reservation.reservation_line.reserve
+			next_free_bed = 0
+			# Check if the reservation is for a room marked as dormitory
+			if room_id.dormitory:
+				for bed in room_id.bed_ids:
+					if ( bed.check_availability(self.checkin, self.checkout) ):
+						next_free_bed = bed
+						break
+				if not next_free_bed:
+					roomcount = 1
 			else:
 				self._cr.execute("select count(*) from hotel_reservation as hr "
 					"inner join hotel_reservation_line as hrl on \
@@ -44,35 +52,26 @@ class HotelReservation(models.Model):
 				reservation period'))
 			else:
 				self.write({'state': 'confirm'})
-				for line_id in reservation.reservation_line:
-					line_id = line_id.reserve
-					for room_id in line_id:
-						#EXTRA FOR DORMITORYS
-						print "ROOM ID"
-						print room_id
-						if room_id.dormitory:
-							beds = room_id.bed_ids
-							for bed in beds:
-								print bed.name
-								bed.check_bed_availability(self.checkin, self.checkout)
-							vals = {
-								'bed_id': beds[0].id,
-								'check_in': reservation.checkin,
-								'check_out': reservation.checkout,
-								'state': 'assigned',
-								'reservation_id': reservation.id,								
-								}
-							reservation_line_obj.create(vals)
-						else:
-						# END OF EXTRA
-							vals = {
-								'room_id': room_id.id,
-								'check_in': reservation.checkin,
-								'check_out': reservation.checkout,
-								'state': 'assigned',
-								'reservation_id': reservation.id,
-								}
-							room_id.write({'isroom': False, 'status': 'occupied'})
-							reservation_line_obj.create(vals)
+				#EXTRA FOR DORMITORYS
+				if room_id.dormitory:
+					vals = {
+						'bed_id': next_free_bed.id,
+						'check_in': reservation.checkin,
+						'check_out': reservation.checkout,
+						'state': 'assigned',
+						'reservation_id': reservation.id,								
+						}
+					reservation_line_obj.create(vals)
+				else:
+				# END OF EXTRA
+					vals = {
+						'room_id': room_id.id,
+						'check_in': reservation.checkin,
+						'check_out': reservation.checkout,
+						'state': 'assigned',
+						'reservation_id': reservation.id,
+						}
+					room_id.write({'isroom': False, 'status': 'occupied'})
+					reservation_line_obj.create(vals)
 		return True
 		
