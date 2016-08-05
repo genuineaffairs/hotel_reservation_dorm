@@ -21,11 +21,11 @@
 						<field name="hotel_room_bed.bed_reservation_line_ids" colspan="4" nolabel="1" string="Bed Reservation Line">
 			<form string=" Room line">
 				<group colspan="4" col="4">
-					<field name="bed_id"/>
-					<field name="check_in"/>
-					<field name="check_out"/>
-					<field name="reservation_id"/>
-					<field name="status"/>
+					<field name="hotel_room_bed.bed_id"/>
+					<field name="hotel_room_bed.check_in"/>
+					<field name="hotel_room_bed.check_out"/>
+					<field name="hotel_room_bed.reservation_id"/>
+					<field name="hotel_room_bed.status"/>
 				</group>
 			</form>
 			<tree>
