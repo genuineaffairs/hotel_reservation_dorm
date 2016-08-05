@@ -21,7 +21,7 @@
 					</page>
 		</xpath>
 		<xpath expr="//page[@string='Room Reservation']" position="attributes">
-			<attribute name="attrs">{'invisible': [('dormitory','=',False)]}</attrbiute>			
+			<attribute name="attrs">{'invisible': [('dormitory','=',False)]}</attribute>			
 		</xpath>
 	</field>
 	</record>
