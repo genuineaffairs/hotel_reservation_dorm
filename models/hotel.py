@@ -46,10 +46,10 @@ class HotelBed(models.Model):
 		self.env.cr.execute("SELECT * FROM hotel_room_reservation_line WHERE (check_in,check_out) OVERLAPS ( timestamp %s, timestamp %s ) AND bed_id=%s", (check_in, check_out, self.id))
 		query_result = self.env.cr.fetchall()
 		if query_result:
-			return false
+			return False
 		else:
 			print self.name + " is available!"
-			return true
+			return True
 		
 class HotelRoomReservationLine(models.Model):
 	_inherit = 'hotel.room.reservation.line'
