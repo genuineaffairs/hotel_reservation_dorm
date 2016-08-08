@@ -1,5 +1,5 @@
 {
-	'name': 'Hotel Dormitoy Reservation',
+	'name': 'Hotel Dormitory Reservation',
 	'description': 'Extends Hotel Managment suite to allow reservations in dormitories.',
 	'author' : 'Oscar Hall',
 	'depends' : ['hotel_reservation','hotel'],

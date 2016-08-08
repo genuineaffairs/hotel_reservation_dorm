@@ -22,7 +22,7 @@
 		</xpath>
 	</field>
 	</record>
-	
+	<!--
 	<record model="ir.ui.view" id="view_hotel_room_form_inherited_dorm">
 	<field name="name">hotel.room.form.inherited</field>
 	<field name="model">hotel.room</field>
@@ -32,7 +32,7 @@
 			<attribute name="attrs">{'invisible': [('dormitory','=',False)]}</attribute>
 		</xpath>
 	</field>
-	</record>
+	</record>-->
 			
 	<!-- Hotel Bed tree view -->
 	<record model="ir.ui.view" id="view_hotel_room_bed_tree" >
