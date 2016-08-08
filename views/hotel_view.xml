@@ -18,8 +18,6 @@
 		<xpath expr="//page[@string='Information']" position="after">
 					<page string="Bed Reservations" attrs="{'invisible': [('dormitory','=',False)]}">
 						<separator colspan="4" string="Bed Reservation Line"/>
-						<field name="room_reservation_line_ids" colspan="4" nolabel="1" string="Bed Reservation Line">
-						</field>
 					</page>
 		</xpath>
 	</field>
