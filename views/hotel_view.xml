@@ -67,7 +67,7 @@
 	</field>
 	</record>
 	
-	<!-- Hotel Bed form view -->
+	<!-- Hotel Bed form view ->
 	<record model="ir.ui.view" id="view_hotel_room_bed_form" >
 	<field name="name">hotel.room.bed.form</field>
 	<field name="model">hotel.room.bed</field>
@@ -100,7 +100,7 @@
 			</page>
 		</notebook>
 	</field>
-	</record>
+	</record>-->
 	
 	
 	<!-- Action for hotel bed  -->
