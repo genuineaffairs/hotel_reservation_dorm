@@ -15,11 +15,6 @@
 			<field name="bed_ids" nolabel='1' help="List of beds in room." attrs="{'invisible': [('dormitory','=',False)]}" />
 			<newline/>
 		</xpath>
-		<xpath expr="//page[@string='Information']" position="after">
-					<page string="Bed Reservations" attrs="{'invisible': [('dormitory','=',False)]}">
-						<separator colspan="4" string="Bed Reservation Line"/>
-					</page>
-		</xpath>
 	</field>
 	</record>
 
