@@ -5,6 +5,7 @@ class HotelRoom(models.Model):
 	# Extra fields form dorm-rooms
 	dormitory = fields.Boolean('Dormitory')
 	bed_ids = fields.One2many('hotel.room.bed','room_id')
+	room_bed_reservation_line_ids = fields.One2many(related='hotel.room.reservation.line.bed_id', string='Bed Reservation Line')
 
 	@api.model
 	def create(self,vals):
@@ -35,7 +36,7 @@ class HotelBed(models.Model):
 							('occupied', 'Occupied')],
 							'Status', default='available')
 	bed_line_ids = fields.One2many('folio.room.line', 'room_id', string='Bed Reservation Line')
-	bed_reservation_line_ids = fields.One2many('hotel.room.reservation.line', 'bed_id', string='Bed Reserv Line')
+	bed_reservation_line_ids = fields.One2many('hotel.room.reservation.line', 'bed_id', string='Bed Reservation Line')
 	
 	# Checks availability for a bed for a certain time-period
 	# Returns False if there are reservations overlaping selected time-period
