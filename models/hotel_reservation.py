@@ -87,11 +87,12 @@ class HotelReservation(models.Model):
 			self._context = {}
 		vals['reservation_no'] = self.env['ir.sequence'].get('hotel.reservation')
 		# OVERRIDE
-		temp_checkin = vals['checkin']
-		temp_checkout = vals['checkout']
-		#temp_checkin = fields.Datetime.from_string(vals['checkin'])
-		#temp_checkout = fields.Datetime.from_string(vals['checkout'])
-		print temp_checkin.replace(temp_checkin.year,temp_checkin.month,temp_checkin.day,18,00,00)
-		print temp_checkout.replace(temp_checkout.year,temp_checkout.month,temp_checkout.day,16,00,00)
+		temp_checkin = fields.Datetime.from_string(vals['checkin'])
+		temp_checkout = fields.Datetime.from_string(vals['checkout'])
+		temp_checkin = temp_checkin.replace(temp_checkin.year,temp_checkin.month,temp_checkin.day,18,00,00)
+		temp_checkout = temp_checkout.replace(temp_checkout.year,temp_checkout.month,temp_checkout.day,16,00,00)
+		print temp_checkin
+		print temp_checkout
+		
 		# OVERRIDE	
 		return super(HotelReservation, self).create(vals)
