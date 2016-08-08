@@ -43,7 +43,7 @@ class HotelBed(models.Model):
 	# Returns True if there are no other reservations within time-period
 	@api.one
 	def check_availability(self, check_in, check_out):
-		self.env.cr.execute("SELECT * FROM hotel_room_reservation_line WHERE (check_in,check_out) OVERLAPS ( timestamp %s, timestamp %s ) AND bed_id=%s AND state!='assigned'", (check_in, check_out, self.id))
+		self.env.cr.execute("SELECT * FROM hotel_room_reservation_line WHERE (check_in,check_out) OVERLAPS ( timestamp %s, timestamp %s ) AND bed_id=%s AND state='assigned'", (check_in, check_out, self.id))
 		query_result = self.env.cr.fetchall()
 		if query_result:
 			return False
