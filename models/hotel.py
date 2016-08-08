@@ -5,8 +5,8 @@ class HotelRoom(models.Model):
 	# Extra fields form dorm-rooms
 	dormitory = fields.Boolean('Dormitory')
 	bed_ids = fields.One2many('hotel.room.bed','room_id')
-	room_bed_reservation_line_ids = fields.One2many(related='hotel.room.reservation.line', string='Bed Reservation Line')
-
+	# room_bed_reservation_line_ids = fields.One2many(compute = '_get_bed_reservations', string='Bed Reservation Line')
+				
 	@api.model
 	def create(self,vals):
 		# IF THE ROOM IS A DORM, CREATE BEDS
