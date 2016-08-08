@@ -78,3 +78,15 @@ class HotelReservation(models.Model):
 					reservation_line_obj.create(vals)
 		return True
 		
+		
+	@api.models
+	def create(self, vals):
+		# OVERRIDE
+		print vals
+		# OVERRIDE		
+		if not vals:
+			vals = {}
+		if self._context is None:
+			self._context = {}
+		vals['reservation_no'] = self.env['ir.sequence'].get('hotel.reservation')
+		return super(HotelReservation, self).create(vals)
