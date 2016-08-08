@@ -93,6 +93,7 @@ class HotelReservation(models.Model):
 		temp_checkout = temp_checkout.replace(temp_checkout.year,temp_checkout.month,temp_checkout.day,16,00,00)
 		print temp_checkin
 		print temp_checkout
-		
+		vals['checkin'] = temp_checkin
+		vals['checkout'] = temp_checkout
 		# OVERRIDE	
 		return super(HotelReservation, self).create(vals)
