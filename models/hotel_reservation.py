@@ -80,13 +80,16 @@ class HotelReservation(models.Model):
 		
 		
 	@api.model
-	def create(self, vals):
-		# OVERRIDE
-		print vals
-		# OVERRIDE		
+	def create(self, vals):	
 		if not vals:
 			vals = {}
 		if self._context is None:
 			self._context = {}
 		vals['reservation_no'] = self.env['ir.sequence'].get('hotel.reservation')
+		# OVERRIDE
+		temp_checkin = fields.Datetime.from_string(vals['checkin'] + " 08:00:00")
+		temp_checkout = fields.Datetime.from_string(vals['checkout'] + " 06:00:00")
+		print temp_checkin
+		print temp_checkout
+		# OVERRIDE	
 		return super(HotelReservation, self).create(vals)
