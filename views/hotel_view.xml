@@ -32,7 +32,7 @@
 		<xpath expr="//page[@string='Room Reservation']" position="attributes">
 			<attribute name="attrs">{'invisible': [('dormitory','=',True)]}</attribute>
 		</xpath>-->
-		<xpath expr="//field[@name='room_id']" position="after">
+		<xpath expr="/form/group/field[@name='room_id']" position="after">
 			<field name="bed_id" />
 		</xpath>
 	</field>
