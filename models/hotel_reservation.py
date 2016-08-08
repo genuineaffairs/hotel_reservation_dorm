@@ -50,11 +50,11 @@ class HotelReservation(models.Model):
 				roomcount = res and res[0] or 0.0
 			if roomcount:
 				raise exceptions.Warning('You tried to confirm \
-				reservation with room those already reserved in this \
+				a reservation for a room that is already reserved in this \
 				reservation period')
 			else:
 				self.write({'state': 'confirm'})
-				#EXTRA FOR DORMITORYS
+				# EXTRA. Create a reservation on a bed if the room is a dorm
 				if room_id.dormitory:
 					vals = {
 						'bed_id': next_free_bed.id,

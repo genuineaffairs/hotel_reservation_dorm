@@ -2,24 +2,21 @@ from openerp import models, fields, api
 
 class HotelRoom(models.Model):
 	_inherit = 'hotel.room'
-	
+	# Extra fields form dorm-rooms
 	dormitory = fields.Boolean('Dormitory')
 	bed_ids = fields.One2many('hotel.room.bed','room_id')
-	nr_beds = fields.Integer('Nr of beds in room', default=1)
 
 	@api.model
 	def create(self,vals):
 		# IF THE ROOM IS A DORM, CREATE BEDS
 		if vals['dormitory']:
-			print "CREATING BEDS FOR DORM"
 			new_beds = []
 			for i in range(vals['capacity']):
 				bed_name = "Bed #" + str(i+1)
 				bed_vals = {'name': bed_name, 'capacity': 1,}
 				new_beds.append((0,0,bed_vals))
-				print new_beds
 			vals.update({'bed_ids': new_beds})
-		# END OVERRIDE
+		# END OF OVERRIDE
 		uom_obj = self.env['product.uom']
 		vals.update({'type':'service'})
 		uom_rec = uom_obj.search([('name','ilike','Hour(s)')],limit=1)
@@ -37,7 +34,6 @@ class HotelBed(models.Model):
 	status = fields.Selection([('available', 'Available'),
 							('occupied', 'Occupied')],
 							'Status', default='available')
-	capacity = fields.Integer('Capacity', default=1)
 	bed_line_ids = fields.One2many('folio.room.line', 'room_id', string='Bed Reservation Line')
 	bed_reservation_line_ids = fields.One2many('hotel.room.reservation.line', 'bed_id', string='Bed Reserv Line')
 	
