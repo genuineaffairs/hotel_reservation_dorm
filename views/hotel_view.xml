@@ -29,7 +29,7 @@
 	<field name="inherit_id" ref="hotel_reservation.view_hotel_room_form_inherited" />
 	<field name="arch" type="xml">
 		<xpath expr="//page[@string='Room Reservation']" position="attributes">
-			<attribute name="attrs">{'invisible': [('dormitory','=',False)]}</attribute>
+			<attribute name="attrs">{'invisible': [('dormitory','=',True)]}</attribute>
 		</xpath>
 	</field>
 	</record>
