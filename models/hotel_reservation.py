@@ -95,5 +95,6 @@ class HotelReservation(models.Model):
 		print temp_checkout
 		vals['checkin'] = temp_checkin
 		vals['checkout'] = temp_checkout
+		print vals['checkin']
 		# OVERRIDE	
 		return super(HotelReservation, self).create(vals)
