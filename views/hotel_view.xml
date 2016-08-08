@@ -19,7 +19,7 @@
 					<page string="Bed Reservations" attrs="{'invisible': [('dormitory','=',False)]}">
 						<separator colspan="4" string="Bed Reservation Line"/>
 						<t t-foreach="bed_ids" t-as="bed">
-							<t t-esc="bed.name">
+							<t t-esc="bed.name" />
 						</t>
 					</page>
 		</xpath>
