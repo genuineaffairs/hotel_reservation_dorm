@@ -57,7 +57,7 @@ class HotelReservation(models.Model):
 				# EXTRA. Create a reservation on a bed if the room is a dorm
 				if room_id.dormitory:
 					vals = {
-						'room_id': room_id.id,
+						'dorm_id': room_id.id,
 						'bed_id': next_free_bed.id,
 						'check_in': reservation.checkin,
 						'check_out': reservation.checkout,

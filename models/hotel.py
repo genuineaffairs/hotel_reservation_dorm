@@ -6,7 +6,8 @@ class HotelRoom(models.Model):
 	dormitory = fields.Boolean('Dormitory')
 	bed_ids = fields.One2many('hotel.room.bed','room_id')
 	# room_bed_reservation_line_ids = fields.One2many(compute = '_get_bed_reservations', string='Bed Reservation Line')
-				
+	dorm_reservation_line_ids = fields.One2many('hotel.room.reservation.line', 'dorm_id', string='Bed Reservation Line')
+	
 	@api.model
 	def create(self,vals):
 		# IF THE ROOM IS A DORM, CREATE BEDS
@@ -54,6 +55,7 @@ class HotelRoomReservationLine(models.Model):
 	_inherit = 'hotel.room.reservation.line'
 	
 	bed_id = fields.Many2one(comodel_name='hotel.room.bed', string='Bed id')
+	dorm_id = fields.Many2one(comodel_name='hotel.room', string='Dorm room id')
 
 class HotelReservationLine(models.Model):
 	_inherit = 'hotel_reservation.line'
