@@ -18,12 +18,11 @@
 		<xpath expr="//page[@string='Information']" position="after">
 					<page string="Bed Reservations" attrs="{'invisible': [('dormitory','=',False)]}">
 						<separator colspan="4" string="Bed Reservation Line"/>
-							<field name="bed_ids" />
 					</page>
 		</xpath>
 	</field>
 	</record>
-	
+	<!--
 	<record model="ir.ui.view" id="view_hotel_room_form_inherited_dorm">
 	<field name="name">hotel.room.form.inherited</field>
 	<field name="model">hotel.room</field>
@@ -33,7 +32,7 @@
 			<attribute name="attrs">{'invisible': [('dormitory','=',True)]}</attribute>
 		</xpath>
 	</field>
-	</record>
+	</record>-->
 			
 	<!-- Hotel Bed tree view -->
 	<record model="ir.ui.view" id="view_hotel_room_bed_tree" >
