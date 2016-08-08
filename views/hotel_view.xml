@@ -18,9 +18,7 @@
 		<xpath expr="//page[@string='Information']" position="after">
 					<page string="Bed Reservations" attrs="{'invisible': [('dormitory','=',False)]}">
 						<separator colspan="4" string="Bed Reservation Line"/>
-						<t t-foreach="bed_ids" t-as="bed">
-							<field name="bed.name" />
-						</t>
+							<field name="bed_ids.name" />
 					</page>
 		</xpath>
 	</field>
