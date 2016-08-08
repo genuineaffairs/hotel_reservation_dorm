@@ -15,16 +15,18 @@ class HotelReservation(models.Model):
 		for reservation in self:
 			roomcount = 0
 			room_id = reservation.reservation_line.reserve
-			next_free_bed = 0
+			beds_to_reserv = []
 			# Check if the reservation is for a room marked as dormitory
 			if room_id.dormitory:
+				persons = self.adults + self.children
 				for bed in room_id.bed_ids:
-					# Check availability for each bed and set it to next_free_bed if available
+					# Check availability for each bed and append it to beds_to_reserv if available
 					ret = bed.check_availability(self.checkin, self.checkout)
 					if ret[0]:
-						next_free_bed = bed
-						break
-				if not next_free_bed:
+						beds_to_reserv.append(bed.id)
+						if (persons == len(beds_to_reserv)):
+							break
+				if (persons != len(beds_to_reserv)):
 					roomcount = 1
 			else:
 				self._cr.execute("select count(*) from hotel_reservation as hr "
@@ -56,15 +58,16 @@ class HotelReservation(models.Model):
 				self.write({'state': 'confirm'})
 				# EXTRA. Create a reservation on a bed if the room is a dorm
 				if room_id.dormitory:
-					vals = {
-						'dorm_id': room_id.id,
-						'bed_id': next_free_bed.id,
-						'check_in': reservation.checkin,
-						'check_out': reservation.checkout,
-						'state': 'assigned',
-						'reservation_id': reservation.id,								
-						}
-					reservation_line_obj.create(vals)
+					for bed_id in beds_to_reserv:
+						vals = {
+							'dorm_id': room_id.id,
+							'bed_id': bed_id,
+							'check_in': reservation.checkin,
+							'check_out': reservation.checkout,
+							'state': 'assigned',
+							'reservation_id': reservation.id,								
+							}
+						reservation_line_obj.create(vals)
 				else:
 				# END OF EXTRA
 					vals = {
@@ -77,8 +80,7 @@ class HotelReservation(models.Model):
 					room_id.write({'isroom': False, 'status': 'occupied'})
 					reservation_line_obj.create(vals)
 		return True
-		
-		
+			
 	@api.model
 	def create(self, vals):	
 		if not vals:
@@ -86,7 +88,7 @@ class HotelReservation(models.Model):
 		if self._context is None:
 			self._context = {}
 		vals['reservation_no'] = self.env['ir.sequence'].get('hotel.reservation')
-		# OVERRIDE
+		# EXTRA
 		# Set checkin/out times
 		temp_checkin = fields.Datetime.from_string(vals['checkin'])
 		temp_checkout = fields.Datetime.from_string(vals['checkout'])
@@ -94,5 +96,5 @@ class HotelReservation(models.Model):
 		temp_checkout = temp_checkout.replace(temp_checkout.year,temp_checkout.month,temp_checkout.day,15,00,00)
 		vals['checkin'] = temp_checkin
 		vals['checkout'] = temp_checkout
-		# OVERRIDE	
+		# END OF EXTRA
 		return super(HotelReservation, self).create(vals)
