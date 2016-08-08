@@ -30,10 +30,10 @@
 	<field name="arch" type="xml">
 		<xpath expr="//tree/field[@name='room_id']" position="after">
 			<field name="bed_id" attrs="{'invisible': [('dormitory','=',False)]}"/>
-		</xpath>
+		</xpath><!--
 		<xpath expr="//tree/field[@name='room_id']" position="attributes">
 			<attribute name="attrs">{'invisible': [('dormitory','=',True)]}</attribute>
-		</xpath>
+		</xpath>-->
 	</field>
 	</record>
 			
