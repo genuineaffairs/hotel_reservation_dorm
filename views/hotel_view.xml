@@ -75,7 +75,7 @@
 		<form string="Hotel Bed" >
 			<field name="name" />
 			<field name="room_id" />
-		</form> <!--
+		</form> 
 		<notebook>
 			<page string="Bed Reservation">
 				<separator colspan="4" string="Bed Reservation Line" />
@@ -98,7 +98,7 @@
 				</tree>
 			</field>
 			</page>
-		</notebook> -->
+		</notebook> 
 	</field>
 	</record>
 	
