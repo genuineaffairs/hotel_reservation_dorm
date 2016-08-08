@@ -32,7 +32,7 @@
 			<field name="bed_id" attrs="{'invisible': [('dormitory','=',False)]}"/>
 		</xpath>
 		<xpath expr="//tree/field[@name='room_id']" position="attributes">
-			<attribute name="attrs">{'invisible': [('dormitory','=',False)]}</attribute>
+			<attribute name="attrs">{'invisible': [('dormitory','=',True)]}</attribute>
 		</xpath>
 	</field>
 	</record>
