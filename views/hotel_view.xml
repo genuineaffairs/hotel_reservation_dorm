@@ -71,7 +71,8 @@
 	<record model="ir.ui.view" id="view_hotel_room_bed_form" >
 	<field name="name">hotel.room.bed.form</field>
 	<field name="model">hotel.room.bed</field>
-	<field name="arch" type="xml"><!--
+	<field name="arch" type="xml">
+	<!--
 		<form string="Hotel Bed" >
 			<field name="name" />
 			<field name="room_id" />
