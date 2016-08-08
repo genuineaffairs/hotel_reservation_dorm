@@ -79,7 +79,7 @@ class HotelReservation(models.Model):
 		return True
 		
 		
-	@api.models
+	@api.model
 	def create(self, vals):
 		# OVERRIDE
 		print vals
