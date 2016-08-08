@@ -89,7 +89,8 @@ class HotelReservation(models.Model):
 		# OVERRIDE
 		temp_checkin = fields.Datetime.from_string(vals['checkin'] + " 08:00:00")
 		temp_checkout = fields.Datetime.from_string(vals['checkout'] + " 06:00:00")
-		print temp_checkin.time
+		temp_checkin.hour = 12
+		temp_checkin.min = 30
 		print temp_checkin
 		print temp_checkout
 		# OVERRIDE	
