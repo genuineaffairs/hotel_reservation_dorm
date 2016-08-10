@@ -30,7 +30,7 @@
 							<field name="status"/>
 						</group>
 					</form>
-					<tree>
+					<tree create="false">
 						<field name="bed_id"/>
 						<field name="check_in"/>
 						<field name="check_out"/>
