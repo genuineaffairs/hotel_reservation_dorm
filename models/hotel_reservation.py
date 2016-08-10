@@ -1,4 +1,6 @@
 from openerp import models, fields, api, exceptions
+from openerp.tools import DEFAULT_SERVER_DATETIME_FORMAT
+import datetime
 
 class HotelReservation(models.Model):
 	_inherit = 'hotel.reservation'
