@@ -89,7 +89,8 @@ class HotelReservation(models.Model):
 			self._context = {}
 		vals['reservation_no'] = self.env['ir.sequence'].get('hotel.reservation')
 		# EXTRA
-		# Set checkin/out times
+		# Set checkin/out times greater than 00:00:00 UTC to display the correct dates with timezone
+		# Checkin time needs to be greater than checkout time so one night is less then 24hours to create folio correctly
 		temp_checkin = fields.Datetime.from_string(vals['checkin'])
 		temp_checkout = fields.Datetime.from_string(vals['checkout'])
 		temp_checkin = temp_checkin.replace(temp_checkin.year,temp_checkin.month,temp_checkin.day,17,00,00)

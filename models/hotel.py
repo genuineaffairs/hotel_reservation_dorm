@@ -57,9 +57,3 @@ class HotelRoomReservationLine(models.Model):
 	# dorm_id marks which room the reservation is connected to
 	bed_id = fields.Many2one(comodel_name='hotel.room.bed', string='Bed id')
 	dorm_id = fields.Many2one(comodel_name='hotel.room', string='Dorm room id')
-
-class HotelReservationLine(models.Model):
-	_inherit = 'hotel_reservation.line'
-	
-	bed_reserve = fields.Many2many('hotel.room.bed','hotel_reservation_line_bed_rel',
-						'hotel_reservation_line_id', 'bed_id')
