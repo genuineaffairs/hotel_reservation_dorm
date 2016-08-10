@@ -65,7 +65,8 @@ class HotelFolio(models.Model):
 	def folio_room_lines(self):
 		folio_rooms = []
 		for room in self[0].room_lines:
-			print room.product_id.dormitory
+			room_obj = self.env['hotel.room'].search([('id','=',room.product_id.id)])
+			print room_obj
 			if room.product_id.id in folio_rooms:
 				raise exceptions.Warning('You cannot take same room twice')
 			folio_rooms.append(room.product_id.id)
