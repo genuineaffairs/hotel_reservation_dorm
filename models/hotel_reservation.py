@@ -118,7 +118,6 @@ class HotelReservation(models.Model):
 				'duration': duration,
 				'reservation_id': reservation.id,
 				'service_lines': reservation['folio_id'],
-				'product_uos_qty': 2, ##EXTRA
 			}
 			date_a = (datetime.datetime
 					  (*time.strptime(reservation['checkout'],
@@ -153,11 +152,12 @@ class HotelReservation(models.Model):
 					res_obj = room_obj.browse([r.id])
 					res_obj.write({'status': 'occupied', 'isroom': False})
 			folio_vals.update({'room_lines': folio_lines})
-			folio = hotel_folio_obj.create(folio_vals)
-			self._cr.execute('insert into hotel_folio_reservation_rel'
-							'(order_id, invoice_id) values (%s,%s)',
-							 (reservation.id, folio.id)
-							 )
+			for range(2): # Create folio two times
+				folio = hotel_folio_obj.create(folio_vals)
+				self._cr.execute('insert into hotel_folio_reservation_rel'
+								'(order_id, invoice_id) values (%s,%s)',
+								 (reservation.id, folio.id)
+								 )
 			reservation.write({'state': 'done'})
 		return True			
 
