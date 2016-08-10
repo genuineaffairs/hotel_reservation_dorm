@@ -20,7 +20,7 @@
 		<xpath expr="//page[@string='Information']" position="after">		 	
  			<page string="Bed Reservations" attrs="{'invisible': [('dormitory','=',False)]}">	
  				<separator colspan="4" string="Bed Reservation Line"/>	
-				<field name="dorm_reservation_line_ids" colspan="4" nolabel="1" string="Bed Reservation Line">
+				<field name="dorm_reservation_line_ids" colspan="4" options="{'no_create': True}" nolabel="1" string="Bed Reservation Line">
 					<form string=" Room line">
 						<group colspan="4" col="4">
 							<field name="bed_id"/>
@@ -30,7 +30,7 @@
 							<field name="status"/>
 						</group>
 					</form>
-					<tree create="false" delete="false">
+					<tree>
 						<field name="bed_id"/>
 						<field name="check_in"/>
 						<field name="check_out"/>
