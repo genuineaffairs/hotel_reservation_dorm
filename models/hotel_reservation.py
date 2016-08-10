@@ -59,7 +59,7 @@ class HotelReservation(models.Model):
 				reservation period')
 			else:
 				self.write({'state': 'confirm'})
-				# EXTRA. Create a reservation on a bed if the room is a dorm
+				# Create a reservation on a bed if the room is a dorm
 				if room_id.dormitory:
 					for bed_id in beds_to_reserv:
 						vals = {
@@ -72,7 +72,7 @@ class HotelReservation(models.Model):
 							}
 						reservation_line_obj.create(vals)
 				else:
-				# END OF EXTRA
+				# Create a reservation on the room
 					vals = {
 						'room_id': room_id.id,
 						'check_in': reservation.checkin,
@@ -172,7 +172,6 @@ class HotelReservation(models.Model):
 		if self._context is None:
 			self._context = {}
 		vals['reservation_no'] = self.env['ir.sequence'].get('hotel.reservation')
-		# EXTRA
 		# Set checkin/out times greater than 00:00:00 UTC to display the correct dates with timezone
 		# Checkin time needs to be greater than checkout time so one night is less then 24hours to create folio correctly
 		temp_checkin = fields.Datetime.from_string(vals['checkin'])
@@ -181,5 +180,5 @@ class HotelReservation(models.Model):
 		temp_checkout = temp_checkout.replace(temp_checkout.year,temp_checkout.month,temp_checkout.day,15,00,00)
 		vals['checkin'] = temp_checkin
 		vals['checkout'] = temp_checkout
-		# END OF EXTRA
+
 		return super(HotelReservation, self).create(vals)

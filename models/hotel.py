@@ -9,7 +9,7 @@ class HotelRoom(models.Model):
 	
 	@api.model
 	def create(self,vals):
-		# IF THE ROOM IS A DORM, CREATE BEDS
+		# Create beds corresponding to the capacity of the room if it is a dorm
 		if vals['dormitory']:
 			new_beds = []
 			for i in range(vals['capacity']):
@@ -17,7 +17,7 @@ class HotelRoom(models.Model):
 				bed_vals = {'name': bed_name, 'capacity': 1,}
 				new_beds.append((0,0,bed_vals))
 			vals.update({'bed_ids': new_beds})
-		# END OF OVERRIDE
+
 		uom_obj = self.env['product.uom']
 		vals.update({'type':'service'})
 		uom_rec = uom_obj.search([('name','ilike','Hour(s)')],limit=1)
