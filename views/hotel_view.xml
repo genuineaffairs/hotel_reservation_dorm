@@ -13,7 +13,7 @@
 		<!-- Add bed-display on dorm-form-view -->
 		<xpath expr="//separator[@string='Supplier Taxes']" position="before">
 			<separator string="Beds" attrs="{'invisible': [('dormitory','=',False)]}" />
-			<field name="bed_ids" nolabel='1' help="List of beds in room." attrs="{'invisible': [('dormitory','=',False)]}" />
+			<field name="bed_ids" nolabel='1' help="List of beds in room." attrs="{'invisible': [('dormitory','=',False)], 'readonly': True}" />
 			<newline/>
 		</xpath>
 		<!-- Add bed-reservations on dorm-form-view -->
