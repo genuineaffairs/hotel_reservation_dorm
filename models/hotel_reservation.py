@@ -125,6 +125,11 @@ class HotelReservation(models.Model):
 			date_b = (datetime.datetime
 					  (*time.strptime(reservation['checkin'],
 									  DEFAULT_SERVER_DATETIME_FORMAT)[:5]))
+			#  Logic for creation of multiple folio.lines for dorm-rooms
+			nr_of_lines = 1
+			if (self.env['hotel.room'].search([('id','=',reservation.room_id)]).dormitory):
+				nr_of_lines = reservation.adults + reservation.children
+			# --------------------
 			for line in reservation.reservation_line:
 				for r in line.reserve:
 					prod = r.product_id.id
@@ -139,7 +144,7 @@ class HotelReservation(models.Model):
 					)
 					prod_uom = prod_val['value'].get('product_uom', False)
 					price_unit = prod_val['value'].get('price_unit', False)
-					for i in range(2):
+					for i in range(nr_of_lines):
 						folio_lines.append((0, 0, {
 							'checkin_date': checkin_date,
 							'checkout_date': checkout_date,
