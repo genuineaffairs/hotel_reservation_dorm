@@ -140,11 +140,11 @@ class HotelReservation(models.Model):
 					prod_uom = prod_val['value'].get('product_uom', False)
 					price_unit = prod_val['value'].get('price_unit', False)
 					#  Logic for creation of multiple folio.lines for dorm-rooms
-					nr_of_lines = 1
+					nr_of_lines_to_create = 1
 					if r.dormitory:
 						nr_of_lines = reservation.adults + reservation.children
 					# --------------------
-					for i in range(nr_of_lines):
+					for i in range(nr_of_lines_to_create):
 						folio_lines.append((0, 0, {
 							'checkin_date': checkin_date,
 							'checkout_date': checkout_date,
