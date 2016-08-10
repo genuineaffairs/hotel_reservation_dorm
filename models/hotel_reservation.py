@@ -82,80 +82,80 @@ class HotelReservation(models.Model):
 		return True
 			
 	@api.multi
-		def _create_folio(self):
-			"""
-			This method is for create new hotel folio.
-			-----------------------------------------
-			@param self: The object pointer
-			@return: new record set for hotel folio.
-			"""
-			hotel_folio_obj = self.env['hotel.folio']
-			room_obj = self.env['hotel.room']
-			for reservation in self:
-				folio_lines = []
-				checkin_date = reservation['checkin']
-				checkout_date = reservation['checkout']
-				if not self.checkin < self.checkout:
-					raise except_orm(_('Error'),
-									 _('Checkout date should be greater \
-									 than the Checkin date.'))
-				duration_vals = (self.onchange_check_dates
-								 (checkin_date=checkin_date,
-								  checkout_date=checkout_date, duration=False))
-				duration = duration_vals.get('duration') or 0.0
-				folio_vals = {
-					'date_order': reservation.date_order,
-					'warehouse_id': reservation.warehouse_id.id,
-					'partner_id': reservation.partner_id.id,
-					'pricelist_id': reservation.pricelist_id.id,
-					'partner_invoice_id': reservation.partner_invoice_id.id,
-					'partner_shipping_id': reservation.partner_shipping_id.id,
-					'checkin_date': reservation.checkin,
-					'checkout_date': reservation.checkout,
-					'duration': duration,
-					'reservation_id': reservation.id,
-					'service_lines': reservation['folio_id']
-				}
-				date_a = (datetime.datetime
-						  (*time.strptime(reservation['checkout'],
-										  DEFAULT_SERVER_DATETIME_FORMAT)[:5]))
-				date_b = (datetime.datetime
-						  (*time.strptime(reservation['checkin'],
-										  DEFAULT_SERVER_DATETIME_FORMAT)[:5]))
-				for line in reservation.reservation_line:
-					for r in line.reserve:
-						prod = r.product_id.id
-						partner = reservation.partner_id.id
-						price_list = reservation.pricelist_id.id
-						folio_line_obj = self.env['hotel.folio.line']
-						prod_val = folio_line_obj.product_id_change(
-							pricelist=price_list, product=prod,
-							qty=0, uom=False, qty_uos=0, uos=False,
-							name='', partner_id=partner, lang=False,
-							update_tax=True, date_order=False
-						)
-						prod_uom = prod_val['value'].get('product_uom', False)
-						price_unit = prod_val['value'].get('price_unit', False)
-						folio_lines.append((0, 0, {
-							'checkin_date': checkin_date,
-							'checkout_date': checkout_date,
-							'product_id': r.product_id and r.product_id.id,
-							'name': reservation['reservation_no'],
-							'product_uom': prod_uom,
-							'price_unit': price_unit,
-							'product_uom_qty': ((date_a - date_b).days) + 1,
-							'product_uos_qty': 2,
-							'is_reserved': True}))
-						res_obj = room_obj.browse([r.id])
-						res_obj.write({'status': 'occupied', 'isroom': False})
-				folio_vals.update({'room_lines': folio_lines})
-				folio = hotel_folio_obj.create(folio_vals)
-				self._cr.execute('insert into hotel_folio_reservation_rel'
-								'(order_id, invoice_id) values (%s,%s)',
-								 (reservation.id, folio.id)
-								 )
-				reservation.write({'state': 'done'})
-			return True			
+	def _create_folio(self):
+		"""
+		This method is for create new hotel folio.
+		-----------------------------------------
+		@param self: The object pointer
+		@return: new record set for hotel folio.
+		"""
+		hotel_folio_obj = self.env['hotel.folio']
+		room_obj = self.env['hotel.room']
+		for reservation in self:
+			folio_lines = []
+			checkin_date = reservation['checkin']
+			checkout_date = reservation['checkout']
+			if not self.checkin < self.checkout:
+				raise except_orm(_('Error'),
+								 _('Checkout date should be greater \
+								 than the Checkin date.'))
+			duration_vals = (self.onchange_check_dates
+							 (checkin_date=checkin_date,
+							  checkout_date=checkout_date, duration=False))
+			duration = duration_vals.get('duration') or 0.0
+			folio_vals = {
+				'date_order': reservation.date_order,
+				'warehouse_id': reservation.warehouse_id.id,
+				'partner_id': reservation.partner_id.id,
+				'pricelist_id': reservation.pricelist_id.id,
+				'partner_invoice_id': reservation.partner_invoice_id.id,
+				'partner_shipping_id': reservation.partner_shipping_id.id,
+				'checkin_date': reservation.checkin,
+				'checkout_date': reservation.checkout,
+				'duration': duration,
+				'reservation_id': reservation.id,
+				'service_lines': reservation['folio_id']
+			}
+			date_a = (datetime.datetime
+					  (*time.strptime(reservation['checkout'],
+									  DEFAULT_SERVER_DATETIME_FORMAT)[:5]))
+			date_b = (datetime.datetime
+					  (*time.strptime(reservation['checkin'],
+									  DEFAULT_SERVER_DATETIME_FORMAT)[:5]))
+			for line in reservation.reservation_line:
+				for r in line.reserve:
+					prod = r.product_id.id
+					partner = reservation.partner_id.id
+					price_list = reservation.pricelist_id.id
+					folio_line_obj = self.env['hotel.folio.line']
+					prod_val = folio_line_obj.product_id_change(
+						pricelist=price_list, product=prod,
+						qty=0, uom=False, qty_uos=0, uos=False,
+						name='', partner_id=partner, lang=False,
+						update_tax=True, date_order=False
+					)
+					prod_uom = prod_val['value'].get('product_uom', False)
+					price_unit = prod_val['value'].get('price_unit', False)
+					folio_lines.append((0, 0, {
+						'checkin_date': checkin_date,
+						'checkout_date': checkout_date,
+						'product_id': r.product_id and r.product_id.id,
+						'name': reservation['reservation_no'],
+						'product_uom': prod_uom,
+						'price_unit': price_unit,
+						'product_uom_qty': ((date_a - date_b).days) + 1,
+						'product_uos_qty': 2,
+						'is_reserved': True}))
+					res_obj = room_obj.browse([r.id])
+					res_obj.write({'status': 'occupied', 'isroom': False})
+			folio_vals.update({'room_lines': folio_lines})
+			folio = hotel_folio_obj.create(folio_vals)
+			self._cr.execute('insert into hotel_folio_reservation_rel'
+							'(order_id, invoice_id) values (%s,%s)',
+							 (reservation.id, folio.id)
+							 )
+			reservation.write({'state': 'done'})
+		return True			
 
 	@api.model
 	def create(self, vals):	
