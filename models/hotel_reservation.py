@@ -117,7 +117,8 @@ class HotelReservation(models.Model):
 				'checkout_date': reservation.checkout,
 				'duration': duration,
 				'reservation_id': reservation.id,
-				'service_lines': reservation['folio_id']
+				'service_lines': reservation['folio_id'],
+				'product_uos_qty': 2, ##EXTRA
 			}
 			date_a = (datetime.datetime
 					  (*time.strptime(reservation['checkout'],
@@ -147,7 +148,7 @@ class HotelReservation(models.Model):
 						'product_uom': prod_uom,
 						'price_unit': price_unit,
 						'product_uom_qty': ((date_a - date_b).days) + 1,
-						'product_uos_qty': 2,
+						'product_uos_qty': 2, ##EXTRA
 						'is_reserved': True}))
 					res_obj = room_obj.browse([r.id])
 					res_obj.write({'status': 'occupied', 'isroom': False})
