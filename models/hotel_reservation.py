@@ -152,7 +152,7 @@ class HotelReservation(models.Model):
 					res_obj = room_obj.browse([r.id])
 					res_obj.write({'status': 'occupied', 'isroom': False})
 			folio_vals.update({'room_lines': folio_lines})
-			for range(2): # Create folio two times
+			for i in range(2): # Create folio two times
 				folio = hotel_folio_obj.create(folio_vals)
 				self._cr.execute('insert into hotel_folio_reservation_rel'
 								'(order_id, invoice_id) values (%s,%s)',
