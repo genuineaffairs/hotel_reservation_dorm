@@ -1,4 +1,4 @@
-from openerp import models, fields, api
+from openerp import models, fields, api, exceptions
 
 class HotelRoom(models.Model):
 	_inherit = 'hotel.room'
@@ -57,3 +57,16 @@ class HotelRoomReservationLine(models.Model):
 	# dorm_id marks which room the reservation is connected to
 	bed_id = fields.Many2one(comodel_name='hotel.room.bed', string='Bed id')
 	dorm_id = fields.Many2one(comodel_name='hotel.room', string='Dorm room id')
+	
+class HotelFolio(models.Model):
+	_inherit = 'hotel.folio'
+	
+	@api.constrains('room_lines')
+	def folio_room_lines(self):
+		folio_rooms = []
+		for room in self[0].room_lines:
+			if room.product_id.id in folio_rooms:
+				raise exceptions.Warning('You cannot take same room twice')
+			print room
+			folio_rooms.append(room.product_id.id)
+			

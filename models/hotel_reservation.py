@@ -139,29 +139,20 @@ class HotelReservation(models.Model):
 					)
 					prod_uom = prod_val['value'].get('product_uom', False)
 					price_unit = prod_val['value'].get('price_unit', False)
-					folio_lines.append((0, 0, {
-						'checkin_date': checkin_date,
-						'checkout_date': checkout_date,
-						'product_id': r.product_id and r.product_id.id,
-						'name': reservation['reservation_no'],
-						'product_uom': prod_uom,
-						'price_unit': price_unit,
-						'product_uom_qty': ((date_a - date_b).days) + 1,
-						'is_reserved': True}))
+					for i in range(2):
+						folio_lines.append((0, 0, {
+							'checkin_date': checkin_date,
+							'checkout_date': checkout_date,
+							'product_id': r.product_id and r.product_id.id,
+							'name': reservation['reservation_no'],
+							'product_uom': prod_uom,
+							'price_unit': price_unit,
+							'product_uom_qty': ((date_a - date_b).days) + 1,
+							'is_reserved': True}))
 					res_obj = room_obj.browse([r.id])
 					res_obj.write({'status': 'occupied', 'isroom': False})
 			folio_vals.update({'room_lines': folio_lines})
 			folio = hotel_folio_obj.create(folio_vals)
-			# Append a new folio_line to folio
-			folio.room_lines.append((0, 0, {
-						'checkin_date': checkin_date,
-						'checkout_date': checkout_date,
-						'product_id': r.product_id and r.product_id.id,
-						'name': reservation['reservation_no'],
-						'product_uom': prod_uom,
-						'price_unit': price_unit,
-						'product_uom_qty': ((date_a - date_b).days) + 1,
-						'is_reserved': True}))
 			self._cr.execute('insert into hotel_folio_reservation_rel'
 							'(order_id, invoice_id) values (%s,%s)',
 							 (reservation.id, folio.id)
