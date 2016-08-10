@@ -70,6 +70,6 @@ class HotelFolio(models.Model):
 			# Get a handle on the room the reservation regards
 			room_obj = self.env['hotel.room'].search([('product_id','=',room.product_id.id)])
 			# If the room is a dormitory we will allow to make multiple folio.lines
-			if room_obj.dormitory:
+			if not room_obj.dormitory:
 				folio_rooms.append(room.product_id.id)
 			
