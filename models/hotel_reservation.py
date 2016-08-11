@@ -227,9 +227,9 @@ class RoomReservationSummary(models.Model):
 				room_detail = {}
 				room_list_stats = []
 				room_detail.update({'name': room.name or ''})
-				# Include a check for bed_reservation_line_ids
+				# Include a check for dorm_reservation_line_ids
 				if not room.room_reservation_line_ids and \
-				   not room.room_line_ids and not room.bed_reservation_line_ids:
+				   not room.room_line_ids and not room.dorm_reservation_line_ids:
 					for chk_date in date_range_list:
 						room_list_stats.append({'state': 'Free',
 												'date': chk_date})
@@ -254,7 +254,7 @@ class RoomReservationSummary(models.Model):
 						# If number of bed reservations is equal to the room capacity -> the room is occupied
 						dorm_occupied = 0
 						if room.dormitory:
-							bed_res_ids = room.bed_reservation_line_ids.ids
+							bed_res_ids = room.dorm_reservation_line_ids.ids
 							bed_reservations = (reservation_line_obj.search
 										  ([('id', 'in', bed_res_ids),
 											('check_in', '<=', chk_date),
