@@ -187,12 +187,12 @@ class RoomReservationSummary(models.Model):
 				raise except_orm(_('User Error!'),
 								 _('Please Check Time period Date \
 								 From can\'t be greater than Date To !'))					 
-			d_frm_obj = (datetime.datetime.strptime
-						 (self.date_from, DEFAULT_SERVER_DATETIME_FORMAT))
-			d_to_obj = (datetime.datetime.strptime
-						(self.date_to, DEFAULT_SERVER_DATETIME_FORMAT))
-			temp_from = fields.Datetime.from_string(self.date_from + "12:00:00")
+			# Add a time at the end of the day to make reservation-summary functionality work
+			# properly with timezone and show the correct dates as reserved/free
+			temp_from = fields.Datetime.from_string(self.date_from)
 			d_frm_obj = temp_from.replace(temp_from.year,temp_from.month,temp_from.day,23,00,00)
+			temp_to = fields.Datetime.from_string(self.date_to)
+			d_to_obj = temp_to.replace(temp_to.year,temp_to.month,temp_to.day,23,00,00)
 			print "Input dates"
 			print self.date_from
 			print d_frm_obj
