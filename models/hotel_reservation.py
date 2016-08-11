@@ -261,9 +261,13 @@ class RoomReservationSummary(models.Model):
 											('check_out', '>=', chk_date),
 											('status', '!=', 'cancel')
 											]))
+							print ""
+							print chk_date
 							print bed_reservations
 							if room.capacity == len(bed_reservations):
 								dorm_occupied = 1
+								print "Dorm is occupied"
+							print ""
 						# Include a check for the dorm_occupied-flag
 						if reservline_ids or folio_resrv_ids or dorm_occupied:
 							room_list_stats.append({'state': 'Reserved',
