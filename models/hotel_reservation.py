@@ -193,10 +193,7 @@ class RoomReservationSummary(models.Model):
 			d_frm_obj = temp_from.replace(temp_from.year,temp_from.month,temp_from.day,23,00,00)
 			temp_to = fields.Datetime.from_string(self.date_to)
 			d_to_obj = temp_to.replace(temp_to.year,temp_to.month,temp_to.day,23,00,00)
-			print "Input dates"
-			print self.date_from
-			print d_frm_obj
-			print d_to_obj
+
 			temp_date = d_frm_obj
 			while(temp_date <= d_to_obj):
 				val = ''
@@ -248,13 +245,6 @@ class RoomReservationSummary(models.Model):
 											('check_out', '>=', chk_date),
 											('status', '!=', 'cancel')
 											]))
-							print ""
-							print chk_date
-							print bed_reservations
-							if room.capacity == len(bed_reservations):
-								dorm_occupied = 1
-								print "Dorm is occupied"
-							print ""
 						# Include a check for the dorm_occupied-flag
 						if reservline_ids or folio_resrv_ids or dorm_occupied:
 							room_list_stats.append({'state': 'Reserved',
