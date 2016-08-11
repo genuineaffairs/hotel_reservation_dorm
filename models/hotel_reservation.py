@@ -189,7 +189,7 @@ class RoomReservationSummary(models.Model):
 	
 	# Override get_room_summary to include dorm-functionality
 	@api.onchange('date_from', 'date_to')
-		def get_room_summary(self):
+	def get_room_summary(self):
 		'''
 		@param self: object pointer
 		 '''
