@@ -4,7 +4,5 @@
 	'author' : 'Oscar Hall',
 	'depends' : ['hotel_reservation','hotel'],
 	'data' : [
-				'views/hotel_view.xml',
-				'views/hotel_reservation_view.xml',
-				'views/hotel_reservation_workflow.xml',],
+				'views/hotel_view.xml',],
 }
