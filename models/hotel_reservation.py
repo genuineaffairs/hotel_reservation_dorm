@@ -192,9 +192,10 @@ class RoomReservationSummary(models.Model):
 			d_to_obj = (datetime.datetime.strptime
 						(self.date_to, DEFAULT_SERVER_DATETIME_FORMAT))
 			temp_from = fields.Datetime.from_string(self.date_from + "12:00:00")
+			d_frm_obj = temp_from.replace(temp_from.year,temp_from.month,temp_from.day,23,00,00)
 			print "Input dates"
+			print self.date_from
 			print d_frm_obj
-			print temp_from
 			print d_to_obj
 			temp_date = d_frm_obj
 			while(temp_date <= d_to_obj):
