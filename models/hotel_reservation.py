@@ -237,6 +237,7 @@ class RoomReservationSummary(models.Model):
 						# Make a check for bed_reservation_line_ids in case of dorm-room
 						# If number of bed reservations is equal to the room capacity -> the room is occupied
 						dorm_occupied = 0
+						print "testing dorm-flag"
 						if room.dormitory:
 							bed_res_ids = room.dorm_reservation_line_ids.ids
 							bed_reservations = (reservation_line_obj.search
