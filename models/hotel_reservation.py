@@ -168,8 +168,8 @@ class HotelReservation(models.Model):
 class RoomReservationSummary(models.Model):
 	_inherit = 'room.reservation.summary'
 	
-	 date_from = fields.Date('Date From')
-    date_to = fields.Date('Date To')
+	date_from = fields.Date('Date From')
+	date_to = fields.Date('Date To')
 	
 	# Override get_room_summary to include dorm-functionality
 	@api.onchange('date_from', 'date_to')
