@@ -19,9 +19,12 @@ class HotelReservation(models.Model):
 			roomcount = 0
 			room_id = reservation.reservation_line.reserve
 			beds_to_reserv = []
+			# Control that number of persons regarding reservation is added
+			persons = self.adults + self.children
+			if persons == 0:
+				raise exceptions.Warning('You forgot to add number of adults and/or children.')
 			# Check if the reservation is for a room marked as dormitory
 			if room_id.dormitory:
-				persons = self.adults + self.children
 				for bed in room_id.bed_ids:
 					# Check availability for each bed and append it to beds_to_reserv if available
 					ret = bed.check_availability(self.checkin, self.checkout)
