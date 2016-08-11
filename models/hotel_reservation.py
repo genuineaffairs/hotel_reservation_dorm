@@ -186,14 +186,15 @@ class RoomReservationSummary(models.Model):
 			if self.date_from > self.date_to:
 				raise except_orm(_('User Error!'),
 								 _('Please Check Time period Date \
-								 From can\'t be greater than Date To !'))
-			print self.date_from
+								 From can\'t be greater than Date To !'))					 
 			d_frm_obj = (datetime.datetime.strptime
 						 (self.date_from, DEFAULT_SERVER_DATETIME_FORMAT))
 			d_to_obj = (datetime.datetime.strptime
 						(self.date_to, DEFAULT_SERVER_DATETIME_FORMAT))
+			temp_from = fields.Datetime.from_string(self.date_from + "12:00:00")
 			print "Input dates"
 			print d_frm_obj
+			print temp_from
 			print d_to_obj
 			temp_date = d_frm_obj
 			while(temp_date <= d_to_obj):
