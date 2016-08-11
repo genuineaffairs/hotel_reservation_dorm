@@ -210,6 +210,9 @@ class RoomReservationSummary(models.Model):
 						 (self.date_from, DEFAULT_SERVER_DATETIME_FORMAT))
 			d_to_obj = (datetime.datetime.strptime
 						(self.date_to, DEFAULT_SERVER_DATETIME_FORMAT))
+			print "Input dates"
+			print d_frm_obj
+			print d_to_obj
 			temp_date = d_frm_obj
 			while(temp_date <= d_to_obj):
 				val = ''
